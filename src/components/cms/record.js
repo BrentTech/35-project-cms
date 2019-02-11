@@ -14,12 +14,25 @@ const uiSchema = {
 };
 
 class Record extends React.Component {
+  /**
+   *Creates an instance of Record.
+   * @param {*} props
+   * @memberof Record
+   */
   constructor(props) {
     super(props);
     this.state = { schemas: {} };
   }
 
   // Runs whenever props change (pre-render)
+  /**
+   *
+   * Pre-Render function to retrieve state
+   * @param {*} props
+   * @param {*} state
+   * @returns Empty object
+   * @memberof Record
+   */
   static getDerivedStateFromProps(props, state) {
     if (props.model && !props.schemas[props.model]) {
       let url = `${API}/${props.model}/schema`;
@@ -28,10 +41,21 @@ class Record extends React.Component {
     return {};
   }
 
+  /**
+   *
+   * Function for error handling
+   * @memberof Record
+   */
   handleError = error => {
     console.error(error);
   };
 
+  /**
+   *
+   * Function to process user interaction
+   * on webform and dispact update or create actions
+   * @memberof Record
+   */
   handleSubmit = form => {
     if (form.formData._id) {
       let url = `${API}/${this.props.model}/${form.formData._id}`;
@@ -42,6 +66,15 @@ class Record extends React.Component {
     }
   };
 
+  /**
+   *
+   * Render function that builds a webform
+   * available for user interaction with
+   * populated information based on record
+   * selected
+   * @returns JSX Markup
+   * @memberof Record
+   */
   render() {
     return (
       <When condition={this.props.schemas[this.props.model]}>
@@ -58,12 +91,24 @@ class Record extends React.Component {
   }
 }
 
+/**
+ *
+ * Maps the application to local props
+ * @param {*} state
+ */
 const mapStateToProps = state => ({
   record: state.records.record,
   schemas: state.records.schemas,
   model: state.records.model
 });
 
+/**
+ *
+ * Maps application functions from reducer
+ * to location props.
+ * @param {*} dispatch
+ * @param {*} getState
+ */
 const mapDispatchToProps = (dispatch, getState) => ({
   getRecord: url => dispatch(actions.getRecord(url)),
   getSchema: (model, url) => dispatch(actions.getSchema(model, url)),

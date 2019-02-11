@@ -15,11 +15,23 @@ const styles = {
 const API = process.env.REACT_APP_API;
 
 class Models extends React.Component {
+  /**
+   *
+   * Function that sets local variables if
+   * component mounted successfully
+   * @memberof Models
+   */
   componentDidMount() {
     let url = `${API}/models`;
     this.props.getModels(url);
   }
 
+  /**
+   *
+   * Function that sets model and gets all records
+   * on the param passed (model)
+   * @memberof Models
+   */
   selectModel = model => {
     let url = `${API}/${model}`;
     this.props.clearRecord();
@@ -27,6 +39,13 @@ class Models extends React.Component {
     this.props.getRecords(url);
   };
 
+  /**
+   *
+   * Render function that builds a list of models
+   * available for user interaction
+   * @returns JSX Markup
+   * @memberof Models
+   */
   render() {
     return (
       <ul>
@@ -46,10 +65,21 @@ class Models extends React.Component {
   }
 }
 
+/**
+ *
+ *
+ * @param {*} state
+ */
 const mapStateToProps = state => ({
   models: state.records.models
 });
 
+/**
+ *
+ *
+ * @param {*} dispatch
+ * @param {*} getState
+ */
 const mapDispatchToProps = (dispatch, getState) => ({
   setModel: model => dispatch(actions.setModel(model)),
   getModels: url => dispatch(actions.getModels(url)),

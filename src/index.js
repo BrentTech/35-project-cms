@@ -8,6 +8,13 @@ import CMS from './components/cms/cms.js';
 import createStore from './store/';
 const store = createStore();
 
+/**
+ *
+ * Renders components to DOM and
+ * provides Redux Store to inner
+ * components.
+ * @returns JSX Markup
+ */
 function App() {
   return (
     <Provider store={store}>
