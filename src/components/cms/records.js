@@ -17,16 +17,36 @@ const styles = {
 const API = process.env.REACT_APP_API;
 
 class Records extends React.Component {
+  /**
+   *
+   * Function to dispatch the Get action on
+   * a selected record
+   * @memberof Records
+   */
   getRecord = id => {
     let url = `${API}/${this.props.model}/${id}`;
     this.props.getRecord(url);
   };
 
+  /**
+   *
+   * Function to dispatch the Delete action on
+   * a selected record
+   * @memberof Records
+   */
   deleteRecord = id => {
     let url = `${API}/${this.props.model}/${id}`;
     this.props.deleteRecord(this.props.model, id, url);
   };
 
+  /**
+   *
+   * Render function that provides a list
+   * of all records associated with a 
+   * selected model.
+   * @returns JSX Markup
+   * @memberof Records
+   */
   render() {
     return (
       <When condition={this.props.model}>
@@ -54,11 +74,23 @@ class Records extends React.Component {
   }
 }
 
+/**
+ *
+ * Maps the application to local props
+ * @param {*} state
+ */
 const mapStateToProps = state => ({
   records: state.records.records,
   model: state.records.model
 });
 
+/**
+ *
+ * Maps application functions from reducer
+ * to location props.
+ * @param {*} dispatch
+ * @param {*} getState
+ */
 const mapDispatchToProps = (dispatch, getState) => ({
   getRecord: url => dispatch(actions.getRecord(url)),
   deleteRecord: (model, id, url) => dispatch(actions.destroy(model, id, url)),

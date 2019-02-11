@@ -8,6 +8,11 @@ let reducers = combineReducers({
   records: APIreducer
 });
 
+/**
+ *
+ * Creates store using Reducer components
+ * applies middleware for async function calls.
+ */
 const store = () =>
   createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
