@@ -9,7 +9,7 @@
 
 ### Links and Resources
 * [repo](https://github.com/BrentTech/35-project-cms)
-* [front-end](https://d324eni7a2v8o8.cloudfront.net)
+* [front-end](https://d324eni7a2v8o8.cloudfront.net) - Blank when CMS not active
 
 ### Modules
 ##### Exported Values and Methods
